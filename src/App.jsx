@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import Loader from "./Loader/Loader";
 import ErrorPage from "./components/ErrorPage";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+        loader: Loader,
       },
       {
         path: "/cart",

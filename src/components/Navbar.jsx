@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiMenuAlt3, HiOutlineShoppingCart, HiX } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { fetchData } from "../app/features/cartSlice";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const cart = useSelector((state) => state.cart);
+  const { carts, loading, error } = cart;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, []);
+
   return (
     <nav className="shadow-lg">
       <div className="container mx-auto p-4 flex justify-between items-center">
@@ -25,8 +35,8 @@ const Navbar = () => {
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                : "font-medium px-4 py-2 hover:text-blue-400"
             }
           >
             Home
@@ -35,8 +45,8 @@ const Navbar = () => {
             to="/shop"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                : "font-medium px-4 py-2 hover:text-blue-400"
             }
           >
             Shop
@@ -46,8 +56,8 @@ const Navbar = () => {
             to="/about"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                : "font-medium px-4 py-2 hover:text-blue-400"
             }
           >
             About
@@ -56,17 +66,22 @@ const Navbar = () => {
             to="/cart"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400 relative"
+                : "font-medium px-4 py-2 hover:text-blue-400 relative"
             }
           >
             <HiOutlineShoppingCart className="text-xl" />
+            <span className="absolute -top-1 text-secondary right-2">
+              {(carts.length > 0 &&
+                carts.map((cart) => cart.quantity).reduce((a, b) => a + b)) ||
+                0}
+            </span>
           </NavLink>
         </div>
 
         {/* for mobile device */}
         <div
-          className={`absolute top-12 right-6 z-50 w-40 bg-gray-100 shadow-lg py-4 flex-col md:hidden items-center gap-1 ${
+          className={`absolute top-12 right-6 z-50 w-40 bg-gray-100 shadow-lg py-4 flex-col md:hidden items-center rounded-lg gap-1 ${
             menuOpen ? "flex" : "hidden"
           }`}
         >
@@ -74,8 +89,8 @@ const Navbar = () => {
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                : "font-medium px-4 py-2 hover:text-blue-400"
             }
             onClick={() => setMenuOpen(false)}
           >
@@ -85,8 +100,8 @@ const Navbar = () => {
             to="/shop"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                : "font-medium px-4 py-2 hover:text-blue-400"
             }
             onClick={() => setMenuOpen(false)}
           >
@@ -97,8 +112,8 @@ const Navbar = () => {
             to="/about"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                : "font-medium px-4 py-2 hover:text-blue-400"
             }
             onClick={() => setMenuOpen(false)}
           >
@@ -108,12 +123,17 @@ const Navbar = () => {
             to="/cart"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 px-4 py-2 font-medium"
-                : "font-medium px-4 py-2"
+                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400 relative"
+                : "font-medium px-4 py-2 hover:text-blue-400 relative"
             }
             onClick={() => setMenuOpen(false)}
           >
             <HiOutlineShoppingCart className="text-xl" />
+            <span className="absolute -top-1 text-secondary right-2">
+              {(carts.length > 0 &&
+                carts.map((cart) => cart.quantity).reduce((a, b) => a + b)) ||
+                0}
+            </span>
           </NavLink>
         </div>
       </div>

@@ -3,10 +3,34 @@
 @tailwind utilities;
 
 @layer components {
+  .text-primary {
+    color: #a5f3fc;
+  }
+
+  .text-secondary {
+    color: #1a9fb3;
+  }
+  .bg-primary {
+    background-color: #a5f3fc;
+  }
+
+  .bg-secondary {
+    background-color: #22d3ee;
+  }
+
+  .border-primary {
+    border-color: #a5f3fc;
+  }
+
+  .border-secondary {
+    border-color: #22d3ee;
+  }
+
   .text-anime {
     animation: text 5s ease infinite;
     background-size: 200% 200%;
   }
+
   @keyframes text {
     0%,
     100% {
