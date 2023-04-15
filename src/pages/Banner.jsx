@@ -21,10 +21,10 @@ const Banner = () => {
             Shop Now
           </Link>
           <Link
-            to="/about"
+            to="/login"
             className="text-lg font-medium rounded-3xl shadow-md w-56 py-3 border-2 border-primary hover:bg-secondary hover:border-secondary"
           >
-            Learn more
+            Login here
           </Link>
         </div>
       </div>

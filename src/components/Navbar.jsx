@@ -3,6 +3,24 @@ import { HiMenuAlt3, HiOutlineShoppingCart, HiX } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+const navItems = [
+  {
+    id: 1,
+    name: "Home",
+    to: "/",
+  },
+  {
+    id: 2,
+    name: "Shop",
+    to: "/shop",
+  },
+  {
+    id: 3,
+    name: "Login",
+    to: "/login",
+  },
+];
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const carts = useSelector((state) => state.gadgets);
@@ -24,37 +42,20 @@ const Navbar = () => {
 
         {/* for larger device */}
         <div className="hidden md:flex items-center gap-1">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
-                : "font-medium px-4 py-2 hover:text-blue-400"
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/shop"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
-                : "font-medium px-4 py-2 hover:text-blue-400"
-            }
-          >
-            Shop
-          </NavLink>
+          {navItems.map((item) => (
+            <NavLink
+              key={item.id}
+              to={item.to}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                  : "font-medium px-4 py-2 hover:text-blue-400"
+              }
+            >
+              {item.name}
+            </NavLink>
+          ))}
 
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
-                : "font-medium px-4 py-2 hover:text-blue-400"
-            }
-          >
-            About
-          </NavLink>
           <NavLink
             to="/cart"
             className={({ isActive }) =>
@@ -78,40 +79,21 @@ const Navbar = () => {
             menuOpen ? "flex" : "hidden"
           }`}
         >
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
-                : "font-medium px-4 py-2 hover:text-blue-400"
-            }
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/shop"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
-                : "font-medium px-4 py-2 hover:text-blue-400"
-            }
-            onClick={() => setMenuOpen(false)}
-          >
-            Shop
-          </NavLink>
+          {navItems.map((item) => (
+            <NavLink
+              key={item.id}
+              to={item.to}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
+                  : "font-medium px-4 py-2 hover:text-blue-400"
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.name}
+            </NavLink>
+          ))}
 
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-500 px-4 py-2 font-medium hover:text-blue-400"
-                : "font-medium px-4 py-2 hover:text-blue-400"
-            }
-            onClick={() => setMenuOpen(false)}
-          >
-            About
-          </NavLink>
           <NavLink
             to="/cart"
             className={({ isActive }) =>

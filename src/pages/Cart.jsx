@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
 import { clearCart } from "../redux/cartSlice";
+import { notifyError, notifyWarning } from "../utilities/notify";
 
 const Cart = () => {
   const carts = useSelector((state) => state.gadgets);
@@ -33,7 +34,12 @@ const Cart = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center gap-6 mt-6">
           <button
-            onClick={() => dispatch(clearCart())}
+            onClick={() => {
+              if (carts.length > 0) {
+                dispatch(clearCart());
+                notifyWarning("Cart items cleared!");
+              } else notifyError("No items to clear!");
+            }}
             className="text-lg font-medium rounded-3xl shadow-md w-56 py-3 border-2 border-primary hover:bg-secondary hover:border-secondary"
           >
             Clear Cart
