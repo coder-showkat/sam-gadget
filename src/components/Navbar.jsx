@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { HiMenuAlt3, HiOutlineShoppingCart, HiX } from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { fetchData } from "../app/features/cartSlice";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const cart = useSelector((state) => state.cart);
-  const { carts, loading, error } = cart;
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchData());
-  }, []);
+  const carts = useSelector((state) => state.gadgets);
 
   return (
     <nav className="shadow-lg">

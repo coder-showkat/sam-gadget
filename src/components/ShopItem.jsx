@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchData } from "../app/features/cartSlice";
+import { addToCart } from "../redux/cartSlice";
 
 const ShopItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const ShopItem = ({ product }) => {
       </div>
       <button
         className="w-full text-lg font-medium rounded-3xl shadow-md px-12 py-3 border-2 border-primary bg-primary hover:bg-secondary hover:border-secondary active:scale-90"
-        onClick={() => dispatch(fetchData(["add", id]))}
+        onClick={() => dispatch(addToCart(product))}
       >
         Add To Cart
       </button>

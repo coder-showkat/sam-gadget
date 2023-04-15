@@ -4,7 +4,6 @@ import Loader from "./Loader/Loader";
 import ErrorPage from "./components/ErrorPage";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import About from "./pages/About";
 import Banner from "./pages/Banner";
 import Cart from "./pages/Cart";
 import Shop from "./pages/Shop";
@@ -43,10 +42,6 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
-      },
-      {
-        path: "/about",
-        element: <About />,
       },
     ],
   },

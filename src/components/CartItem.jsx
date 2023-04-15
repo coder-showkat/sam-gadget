@@ -1,7 +1,7 @@
 import React from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { fetchData } from "../app/features/cartSlice";
+import { removeCart } from "../redux/cartSlice";
 
 const CartItem = ({ cart }) => {
   const { id, name, picture, price, quantity } = cart;
@@ -20,7 +20,7 @@ const CartItem = ({ cart }) => {
             </div>
             <MdDeleteForever
               className="text-3xl cursor-pointer"
-              onClick={() => dispatch(fetchData(["remove", id]))}
+              onClick={() => dispatch(removeCart(id))}
             />
           </div>
           <div>
